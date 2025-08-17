@@ -15,8 +15,9 @@ const MessageList: React.FC = () => {
     scrollToBottom();
   }, [chatHistory, isLoading]);
 
+  // 입력창 높이(약 80~120px) + 여유 공간을 위해 paddingBottom을 늘림
   return (
-    <div className="flex-grow-1 p-4" style={{ overflowY: 'auto', paddingBottom: '100px' }}>
+    <div className="flex-grow-1 p-4" style={{ overflowY: 'auto', marginBottom: '120px' }}>
       {chatHistory.map((message) => (
         <MessageBubble key={message.id} message={message} />
       ))}

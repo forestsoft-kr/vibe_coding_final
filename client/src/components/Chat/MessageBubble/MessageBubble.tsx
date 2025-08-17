@@ -32,15 +32,21 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
 
   const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
+  // 이미지 경로가 http로 시작하면 그대로, 아니면 apiBaseUrl을 붙임
+  const getImageSrc = (img?: string) => {
+    if (!img) return undefined;
+    return img.startsWith('http') ? img : `${apiBaseUrl}${img}`;
+  };
+
   return (
     <div className={`d-flex ${bubbleClass} mb-3`}>
       <div className={`p-3 rounded`} style={{ maxWidth: '70%' }}>
         <div className={bubbleClasses} style={bubbleStyle}>
           {message.image && (
             <img 
-              src={`${apiBaseUrl}${message.image}`}
+              src={getImageSrc(message.image)}
               alt="Chat attachment"
-              className="img-fluid rounded mb-2 d-block" // d-block added
+              className="img-fluid rounded mb-2 d-block"
               style={{ maxHeight: '200px' }}
             />
           )}

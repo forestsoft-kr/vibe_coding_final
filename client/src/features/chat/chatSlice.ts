@@ -41,8 +41,11 @@ const chatSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
+    setChatHistory: (state, action: PayloadAction<Message[]>) => {
+      state.chatHistory = action.payload;
+    },
   },
 });
 
-export const { addMessage, setPrompt, uploadImage, clearImage, setLoading } = chatSlice.actions;
+export const { addMessage, setPrompt, uploadImage, clearImage, setLoading, setChatHistory } = chatSlice.actions;
 export default chatSlice.reducer;
